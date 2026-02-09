@@ -1,8 +1,10 @@
 package com.gevernova.EmployeePayRoll.controllers;
 
-import com.gevernova.EmployeePayRoll.DTO.EmployeePayrollDTO;
-import com.gevernova.EmployeePayRoll.Entity.EmployeePayroll;
-import com.gevernova.EmployeePayRoll.Services.EmployeePayrollService;
+import com.gevernova.EmployeePayRoll.dto.EmployeePayRollDTO;
+import com.gevernova.EmployeePayRoll.Entity.EmployeePayRoll;
+import com.gevernova.EmployeePayRoll.Entity.EmployeePayRoll;
+import com.gevernova.EmployeePayRoll.dto.EmployeePayRollDTO;
+import com.gevernova.EmployeePayRoll.services.EmployeePayRollService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +17,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeePayRollControllers {
 
-    private final EmployeePayrollService employeePayrollService;
+    private final EmployeePayRollService employeePayrollService;
 
     /**
      * Create a new employee
      */
     @PostMapping
-    public ResponseEntity<EmployeePayroll> createEmployee(
-            @RequestBody EmployeePayrollDTO employeePayrollDTO) {
+    public ResponseEntity<EmployeePayRoll> createEmployee(
+            @RequestBody EmployeePayRollDTO employeePayrollDTO) {
 
-        EmployeePayroll savedEmployee =
+        EmployeePayRoll savedEmployee =
                 employeePayrollService.addEmployee(employeePayrollDTO);
 
         return ResponseEntity
@@ -36,7 +38,7 @@ public class EmployeePayRollControllers {
      * Get all employees
      */
     @GetMapping
-    public ResponseEntity<List<EmployeePayroll>> getAllEmployees() {
+    public ResponseEntity<List<EmployeePayRoll>> getAllEmployees() {
         return ResponseEntity.ok(employeePayrollService.getAllEmployees());
     }
 
@@ -44,7 +46,7 @@ public class EmployeePayRollControllers {
      * Get employee by ID
      */
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeePayroll> getEmployeeById(
+    public ResponseEntity<EmployeePayRoll> getEmployeeById(
             @PathVariable Long id) {
 
         return ResponseEntity.ok(
@@ -56,11 +58,11 @@ public class EmployeePayRollControllers {
      * Update employee by ID
      */
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeePayroll> updateEmployee(
+    public ResponseEntity<EmployeePayRoll> updateEmployee(
             @PathVariable Long id,
-            @RequestBody EmployeePayrollDTO employeePayrollDTO) {
+            @RequestBody EmployeePayRollDTO employeePayrollDTO) {
 
-        EmployeePayroll updatedEmployee =
+        EmployeePayRoll updatedEmployee =
                 employeePayrollService.updateEmployee(id, employeePayrollDTO);
 
         return ResponseEntity.ok(updatedEmployee);
